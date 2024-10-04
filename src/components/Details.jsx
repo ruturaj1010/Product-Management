@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { json, Link, useNavigate, useParams } from 'react-router-dom'
 import axios from '../utils/Axios';
 import Loading from './Loading';
 import { ProductContext } from '../utils/Context';
@@ -10,6 +10,7 @@ const Details = () => {
     const [product, setProduct] = useState( null )
 
     const { id } = useParams();
+    const navigate = useNavigate()
     // console.log(id);
 
     // const getSingleProduct = async () => {
@@ -29,6 +30,13 @@ const Details = () => {
         // getSingleProduct();
     }, [] );
 
+    const productDeleteHandler = (id) =>{
+        const copyProduct = products.filter( p => p.id !== id )
+        setProducts( copyProduct)
+        localStorage.setItem("products" , JSON.stringify(copyProduct))
+        navigate('/')
+    }
+
     return (
         <div className='w-screen h-screen bg-zinc-100 flex items-center justify-between'>
             { product ? <div className='w-3/5 h-4/5 mx-auto bg-white flex items-center justify-between'>
@@ -45,7 +53,7 @@ const Details = () => {
 
                     <div className='flex items-center gap-4'>
                         <Link className='px-4 py-2 rounded-lg border-2 bg-white text-blue-500 hover:font-semibold hover:scale-105 border-blue-300 hover:bg-blue-50'>Edit</Link>
-                        <Link className='px-4 py-2 rounded-lg border-2 bg-white text-red-500 hover:font-semibold hover:scale-105 border-red-300 hover:bg-red-50'>Delete</Link>
+                        <button onClick={()=> productDeleteHandler(product.id)} className='px-4 py-2 rounded-lg border-2 bg-white text-red-500 hover:font-semibold hover:scale-105 border-red-300 hover:bg-red-50'>Delete</button>
                     </div>
                 </div>
             </div> : <Loading /> }
