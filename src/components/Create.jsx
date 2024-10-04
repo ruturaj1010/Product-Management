@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react'
 import { ProductContext } from '../utils/Context'
 import { nanoid } from 'nanoid'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 const Create = () => {
 
@@ -24,6 +25,8 @@ const Create = () => {
         }
         const product = { id: nanoid(), title, image, category, price, description }
         setProducts( [...products, product] )
+
+        toast.success("Product has been added successfully")
 
         // Saving data into local storage
         localStorage.setItem( "products" , JSON.stringify([...products , product]) )

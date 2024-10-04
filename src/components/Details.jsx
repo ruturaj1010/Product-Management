@@ -3,6 +3,7 @@ import { json, Link, useNavigate, useParams } from 'react-router-dom'
 import axios from '../utils/Axios';
 import Loading from './Loading';
 import { ProductContext } from '../utils/Context';
+import { toast } from 'react-toastify';
 
 const Details = () => {
 
@@ -33,6 +34,7 @@ const Details = () => {
     const productDeleteHandler = (id) =>{
         const copyProduct = products.filter( p => p.id !== id )
         setProducts( copyProduct)
+        toast.success("Product deleted successfully!")
         localStorage.setItem("products" , JSON.stringify(copyProduct))
         navigate('/')
     }
@@ -52,7 +54,7 @@ const Details = () => {
                     <p className='text-lg text-wrap'>{ product.description }</p>
 
                     <div className='flex items-center gap-4'>
-                        <Link className='px-4 py-2 rounded-lg border-2 bg-white text-blue-500 hover:font-semibold hover:scale-105 border-blue-300 hover:bg-blue-50'>Edit</Link>
+                        <Link to={`/edit/${product.id}`} className='px-4 py-2 rounded-lg border-2 bg-white text-blue-500 hover:font-semibold hover:scale-105 border-blue-300 hover:bg-blue-50'>Edit</Link>
                         <button onClick={()=> productDeleteHandler(product.id)} className='px-4 py-2 rounded-lg border-2 bg-white text-red-500 hover:font-semibold hover:scale-105 border-red-300 hover:bg-red-50'>Delete</button>
                     </div>
                 </div>
