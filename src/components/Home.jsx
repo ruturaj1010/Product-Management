@@ -37,13 +37,13 @@ const Home = () => {
                 <Navbar />
             </div>
 
-            <div className='w-[85%] bg-zinc-200 p-4 pt-10'>
+            <div className='w-[85%] bg-zinc-700 p-4 pt-10'>
 
                 <div className='flex flex-wrap gap-5 items-center mx-10 my-5'>
 
                     { filteredProducts ?
                         filteredProducts.map( ( item, index ) => (
-                            <Link to={ `/details/${item.id}` } key={ index } className='w-52 h-64 border shadow rounded bg-orange-50 p-2 flex flex-col items-center'>
+                            <Link to={ `/details/${item.id}` } key={ index } className='w-52 h-64 border shadow rounded bg-white p-2 flex flex-col items-center'>
                                 <div className='bg-contain bg-center bg-no-repeat w-full h-52 hover:scale-110 mt-3' style={ { backgroundImage: `url(${item.image})` } }></div>
 
                                 <h1 className='text-sm font-semibold my-3 text-center hover:text-violet-700 cursor-default line-clamp-2 h-12'>{ item.title }</h1>

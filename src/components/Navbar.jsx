@@ -13,11 +13,11 @@ const Navbar = () => {
     // console.log( distinctCatergory );
 
     const color = () => {
-        return `rgba(${( Math.random() * 255 ).toFixed()}, ${( Math.random() * 255 ).toFixed()}, ${( Math.random() * 255 ).toFixed()}, 0.4)`
+        return `rgba(${( Math.random() * 255 ).toFixed()}, ${( Math.random() * 255 ).toFixed()}, ${( Math.random() * 255 ).toFixed()}, 0.6)`
     }
 
     return (
-        <nav className='w-full h-screen bg-zinc-50 flex flex-col items-center pt-5'>
+        <nav className='w-full h-screen bg-zinc-500 text-white flex flex-col items-center pt-5'>
             <Link className='py-2 px-3 my-1 border text-blue-600 font-semibold bg-sky-100 rounded-lg' to="/create">Add new product</Link>
             <hr className='w-[80%] my-3 ' />
             <h1 className='w-[80%] text-lg tracking-wide font-semibold'>Category Filter</h1>
